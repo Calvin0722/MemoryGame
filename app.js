@@ -101,9 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Flip the card
     function flipcard() {
         var cardId = this.getAttribute('data-id')
-        cardsChosen.push(cards[cardId].name)
-        cardsChosenId.push(cardId) // Push the id and name onto the array
-        this.setAttribute('src', cards[cardId].img) // Change the image
+        if (! cardsWon.includes(cardId)) {
+            cardsChosen.push(cards[cardId].name)
+            cardsChosenId.push(cardId) // Push the id and name onto the array
+            this.setAttribute('src', cards[cardId].img) // Change the image
+        }
         if (cardsChosen.length === 2) { // Check for match if two cards are chosen
             setTimeout(checkForMatch, 500)
         }
